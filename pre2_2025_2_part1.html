@@ -1,0 +1,1041 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>英検準2級 2025年度 第2回 Part1 シャドーイング</title>
+<style>
+  :root {
+    --bg:#f6f7fb;
+    --card:#ffffff;
+    --ink:#1e2330;
+    --muted:#667085;
+    --line:#d9deea;
+    --accent:#3157d5;
+    --accent-soft:#eef2ff;
+    --choice:#f8fafc;
+    --shadow:0 8px 24px rgba(31,41,55,.08);
+  }
+  * { box-sizing:border-box; }
+  html, body { margin:0; padding:0; min-height:100%; overflow-y:auto; }
+  body {
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.55;
+  }
+  button { font:inherit; }
+  .topbar {
+    position:sticky; top:0; z-index:20;
+    background:rgba(255,255,255,.96);
+    border-bottom:1px solid var(--line);
+    padding:10px 14px;
+  }
+  .topbar-inner {
+    max-width:980px; margin:auto; display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+  }
+  .brand { font-weight:800; margin-right:auto; }
+  .small { font-size:.88rem; color:var(--muted); }
+  .control {
+    border:1px solid var(--line); background:#fff; border-radius:10px;
+    padding:8px 10px; cursor:pointer;
+  }
+  select.control { padding-right:28px; }
+  .primary {
+    border:none; background:var(--accent); color:white; border-radius:10px;
+    padding:9px 14px; font-weight:700; cursor:pointer;
+  }
+  .container { max-width:980px; margin:20px auto 60px; padding:0 14px; }
+  .hero {
+    background:var(--card); border:1px solid var(--line); border-radius:18px;
+    box-shadow:var(--shadow); padding:22px; margin-bottom:18px;
+  }
+  .hero h1 { margin:0 0 8px; font-size:clamp(1.35rem,3vw,2rem); }
+  .hero p { margin:6px 0; }
+  .steps { margin:14px 0 0; padding-left:1.3em; }
+  .question-card {
+    background:var(--card); border:1px solid var(--line); border-radius:18px;
+    box-shadow:var(--shadow); padding:18px; margin:16px 0;
+  }
+  .question-head {
+    display:flex; gap:10px; align-items:center; justify-content:space-between;
+    border-bottom:1px solid var(--line); padding-bottom:12px; margin-bottom:10px;
+  }
+  .question-head h2 { margin:0; font-size:1.35rem; }
+  .play-question {
+    border:1px solid var(--accent); color:var(--accent); background:#fff;
+    border-radius:10px; padding:7px 11px; cursor:pointer; font-weight:700;
+  }
+  .sentence-row {
+    width:100%; display:grid; grid-template-columns:34px 1fr auto;
+    gap:8px; align-items:center; text-align:left;
+    border:1px solid transparent; border-bottom:1px solid var(--line);
+    background:#fff; padding:13px 8px; cursor:pointer;
+  }
+  .sentence-row:last-of-type { border-bottom:none; }
+  .sentence-row.choice { background:var(--choice); }
+  .sentence-row:hover, .sentence-row.playing {
+    border-color:var(--accent); background:var(--accent-soft); border-radius:10px;
+  }
+  .play-icon {
+    width:28px; height:28px; display:grid; place-items:center; border-radius:50%;
+    background:var(--accent-soft); color:var(--accent); font-size:.8rem;
+  }
+  .english { display:block; font-size:1.08rem; font-weight:700; }
+  .japanese { display:block; color:#3d4758; margin-top:3px; font-size:.96rem; }
+  .duration { color:var(--muted); font-size:.78rem; }
+  .hide-ja .japanese { display:none; }
+  .hide-en .english { visibility:hidden; }
+  .vocab-box { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-top:12px; }
+  .vocab-title { font-size:.82rem; font-weight:800; color:var(--muted); }
+  .vocab-chip {
+    display:inline-block; border:1px solid var(--line); background:#fff;
+    border-radius:999px; padding:5px 9px; font-size:.88rem;
+  }
+  .footer-action {
+    background:#fff; border:1px solid var(--line); border-radius:18px; padding:20px;
+    box-shadow:var(--shadow); text-align:center; margin-top:24px;
+  }
+  .footer-action .primary { font-size:1.05rem; padding:12px 20px; }
+  #shadowMode {
+    display:none; min-height:100vh; background:#111827; color:#fff;
+    padding:22px; overflow-y:auto;
+  }
+  #shadowMode.active { display:block; }
+  #shadowMode .shadow-inner { max-width:760px; margin:8vh auto 40px; text-align:center; }
+  .shadow-badge {
+    display:inline-block; padding:6px 12px; border:1px solid rgba(255,255,255,.25);
+    border-radius:999px; color:#d1d5db; margin-bottom:18px;
+  }
+  .shadow-title { font-size:clamp(1.6rem,4vw,2.5rem); margin:10px 0; }
+  .shadow-note { color:#cbd5e1; margin:8px 0 24px; }
+  .big-no { font-size:clamp(3rem,12vw,7rem); font-weight:900; letter-spacing:.03em; margin:28px 0; }
+  .shadow-controls { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin:18px 0; }
+  .dark-btn {
+    border:1px solid rgba(255,255,255,.3); background:#1f2937; color:#fff;
+    border-radius:12px; padding:11px 16px; cursor:pointer; font-weight:700;
+  }
+  .dark-primary { background:#fff; color:#111827; border-color:#fff; }
+  .progress-wrap {
+    height:10px; background:#374151; border-radius:999px; overflow:hidden; margin:24px 0 8px;
+  }
+  #progressBar { height:100%; width:0%; background:#fff; transition:width .1s linear; }
+  #timeText { color:#9ca3af; font-variant-numeric:tabular-nums; }
+  .no-script {
+    margin:28px auto 0; padding:18px; max-width:520px;
+    border:1px dashed rgba(255,255,255,.28); border-radius:14px; color:#cbd5e1;
+  }
+  .now-playing {
+    position:fixed; right:14px; bottom:14px; z-index:30;
+    background:#111827; color:#fff; border-radius:12px; padding:10px 13px;
+    box-shadow:var(--shadow); display:none; max-width:min(86vw,420px); font-size:.88rem;
+  }
+  .now-playing.show { display:block; }
+  @media (max-width:640px) {
+    .question-card { padding:12px; border-radius:14px; }
+    .sentence-row { grid-template-columns:30px 1fr; }
+    .duration { display:none; }
+    .english { font-size:1rem; }
+    .japanese { font-size:.9rem; }
+    .question-head { align-items:flex-start; }
+    .play-question { font-size:.86rem; }
+  }
+</style>
+</head>
+<body>
+<div id="practiceMode">
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div>
+        <div class="brand">英検準2級 Listening Part 1</div>
+        <div class="small">Sentence Shadowing · No.1–10</div>
+      </div>
+      <button id="toggleJa" class="control">和訳を隠す</button>
+      <button id="toggleEn" class="control">英語を隠す</button>
+      <label class="small">速度
+        <select id="speed" class="control">
+          <option value="0.75">0.75×</option>
+          <option value="0.9">0.90×</option>
+          <option value="1" selected>1.00×</option>
+        </select>
+      </label>
+      <label class="small">繰り返し
+        <select id="repeatCount" class="control">
+          <option value="1" selected>1回</option>
+          <option value="2">2回</option>
+          <option value="3">3回</option>
+        </select>
+      </label>
+    </div>
+  </div>
+
+  <main class="container" id="cardsWrap">
+    <section class="hero">
+      <h1>英検準2級・リスニング Part 1 シャドーイング</h1>
+      <p><b>英文をクリックすると、その文の実際の試験音声だけを再生</b>します。和訳も各文の下に入れました。</p>
+      <ol class="steps">
+        <li>まず英文＋和訳を見ながら、1文ずつクリックして音を確認。</li>
+        <li>慣れたら「和訳を隠す」「英語を隠す」で負荷を上げる。</li>
+        <li>最後に「本番シャドーイング」で、スクリプトを完全に隠したまま No.1 → No.10 を原音で通して聞く。</li>
+      </ol>
+    </section>
+
+    
+      <section class="question-card">
+        <div class="question-head">
+          <h2>No. 1</h2>
+          <button class="play-question" data-q="1" data-start="146.087" data-end="173.149">▶ No.1 を通して聞く</button>
+        </div>
+        
+        <button class="sentence-row dialogue" data-start="146.087" data-end="149.332" aria-label="音声を再生: Jen, you have a part-time job, don’t you?">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">Jen, you have a part-time job, don’t you?</span>
+            <span class="japanese">ジェン、アルバイトをしているんだよね？</span>
+          </span>
+          <span class="duration">3.2s</span>
+        </button>
+        
+        <button class="sentence-row dialogue" data-start="150.037" data-end="153.842" aria-label="音声を再生: Yeah. I work at the hamburger shop on Main Street.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">Yeah. I work at the hamburger shop on Main Street.</span>
+            <span class="japanese">うん。メインストリートのハンバーガーショップで働いているよ。</span>
+          </span>
+          <span class="duration">3.8s</span>
+        </button>
+        
+        <button class="sentence-row dialogue" data-start="154.481" data-end="156.660" aria-label="音声を再生: Do you know if they need more workers?">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">Do you know if they need more workers?</span>
+            <span class="japanese">もっと店員を必要としているか知ってる？</span>
+          </span>
+          <span class="duration">2.2s</span>
+        </button>
+        
+        <button class="sentence-row choice" data-start="157.785" data-end="161.165" aria-label="音声を再生: 1  Yeah, I’ve worked there before.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">1  Yeah, I’ve worked there before.</span>
+            <span class="japanese">うん、私は以前そこで働いたことがあるよ。</span>
+          </span>
+          <span class="duration">3.4s</span>
+        </button>
+        
+        <button class="sentence-row choice" data-start="162.303" data-end="167.350" aria-label="音声を再生: 2  Hmm. I think the hamburgers are too expensive.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">2  Hmm. I think the hamburgers are too expensive.</span>
+            <span class="japanese">うーん。あそこのハンバーガーは高すぎると思う。</span>
+          </span>
+          <span class="duration">5.0s</span>
+        </button>
+        
+        <button class="sentence-row choice" data-start="168.587" data-end="173.149" aria-label="音声を再生: 3  I’m not sure. Let me ask my boss.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">3  I’m not sure. Let me ask my boss.</span>
+            <span class="japanese">よくわからない。店長に聞いてみるね。</span>
+          </span>
+          <span class="duration">4.6s</span>
+        </button>
+        
+        <div class="vocab-box"><span class="vocab-title">語句</span><span class="vocab-chip"><b>a part-time job</b> ＝ アルバイト、パートの仕事</span></div>
+      </section>
+    
+      <section class="question-card">
+        <div class="question-head">
+          <h2>No. 2</h2>
+          <button class="play-question" data-q="2" data-start="185.460" data-end="204.799">▶ No.2 を通して聞く</button>
+        </div>
+        
+        <button class="sentence-row dialogue" data-start="185.460" data-end="187.963" aria-label="音声を再生: Elizabeth, where are you going?">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">Elizabeth, where are you going?</span>
+            <span class="japanese">エリザベス、どこへ行くの？</span>
+          </span>
+          <span class="duration">2.5s</span>
+        </button>
+        
+        <button class="sentence-row dialogue" data-start="188.369" data-end="191.134" aria-label="音声を再生: I’m going bowling with some friends, Dad.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">I’m going bowling with some friends, Dad.</span>
+            <span class="japanese">友達何人かとボウリングに行ってくる、お父さん。</span>
+          </span>
+          <span class="duration">2.8s</span>
+        </button>
+        
+        <button class="sentence-row dialogue" data-start="191.539" data-end="192.933" aria-label="音声を再生: When will you be back?">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">When will you be back?</span>
+            <span class="japanese">いつ戻ってくるの？</span>
+          </span>
+          <span class="duration">1.4s</span>
+        </button>
+        
+        <button class="sentence-row choice" data-start="194.103" data-end="197.053" aria-label="音声を再生: 1  With about five people.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">1  With about five people.</span>
+            <span class="japanese">5人くらいと一緒に。</span>
+          </span>
+          <span class="duration">2.9s</span>
+        </button>
+        
+        <button class="sentence-row choice" data-start="198.167" data-end="200.870" aria-label="音声を再生: 2  In a couple of hours.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">2  In a couple of hours.</span>
+            <span class="japanese">2〜3時間後に。</span>
+          </span>
+          <span class="duration">2.7s</span>
+        </button>
+        
+        <button class="sentence-row choice" data-start="202.021" data-end="204.799" aria-label="音声を再生: 3  The subway is quicker.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">3  The subway is quicker.</span>
+            <span class="japanese">地下鉄のほうが速いよ。</span>
+          </span>
+          <span class="duration">2.8s</span>
+        </button>
+        
+        <div class="vocab-box"><span class="vocab-title">語句</span><span class="vocab-chip"><b>in a couple of hours</b> ＝ 2〜3時間後に</span><span class="vocab-chip"><b>subway</b> ＝ 地下鉄</span></div>
+      </section>
+    
+      <section class="question-card">
+        <div class="question-head">
+          <h2>No. 3</h2>
+          <button class="play-question" data-q="3" data-start="217.116" data-end="240.248">▶ No.3 を通して聞く</button>
+        </div>
+        
+        <button class="sentence-row dialogue" data-start="217.116" data-end="222.031" aria-label="音声を再生: This new computer software is really hard to use.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">This new computer software is really hard to use.</span>
+            <span class="japanese">この新しいコンピューターソフトは本当に使いにくいね。</span>
+          </span>
+          <span class="duration">4.9s</span>
+        </button>
+        
+        <button class="sentence-row dialogue" data-start="222.487" data-end="224.721" aria-label="音声を再生: I know. I don’t understand how to use it, either.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">I know. I don’t understand how to use it, either.</span>
+            <span class="japanese">そうだね。私も使い方がわからないよ。</span>
+          </span>
+          <span class="duration">2.2s</span>
+        </button>
+        
+        <button class="sentence-row dialogue" data-start="225.439" data-end="228.110" aria-label="音声を再生: We should tell the teacher we need some help.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">We should tell the teacher we need some help.</span>
+            <span class="japanese">先生に、助けが必要だと伝えたほうがいいね。</span>
+          </span>
+          <span class="duration">2.7s</span>
+        </button>
+        
+        <button class="sentence-row choice" data-start="229.226" data-end="231.795" aria-label="音声を再生: 1  That’s a good idea.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">1  That’s a good idea.</span>
+            <span class="japanese">それはいい考えだね。</span>
+          </span>
+          <span class="duration">2.6s</span>
+        </button>
+        
+        <button class="sentence-row choice" data-start="232.927" data-end="235.790" aria-label="音声を再生: 2  I’ll call the repair shop.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">2  I’ll call the repair shop.</span>
+            <span class="japanese">修理店に電話するよ。</span>
+          </span>
+          <span class="duration">2.9s</span>
+        </button>
+        
+        <button class="sentence-row choice" data-start="237.066" data-end="240.248" aria-label="音声を再生: 3  It’s an expensive program.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">3  It’s an expensive program.</span>
+            <span class="japanese">それは高価なプログラムだよ。</span>
+          </span>
+          <span class="duration">3.2s</span>
+        </button>
+        
+        <div class="vocab-box"><span class="vocab-title">語句</span><span class="vocab-chip"><b>repair shop</b> ＝ 修理店、修理屋</span></div>
+      </section>
+    
+      <section class="question-card">
+        <div class="question-head">
+          <h2>No. 4</h2>
+          <button class="play-question" data-q="4" data-start="252.613" data-end="284.313">▶ No.4 を通して聞く</button>
+        </div>
+        
+        <button class="sentence-row dialogue" data-start="252.613" data-end="258.370" aria-label="音声を再生: Excuse me, ma’am. Is the museum still showing the Asian art exhibition?">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">Excuse me, ma’am. Is the museum still showing the Asian art exhibition?</span>
+            <span class="japanese">すみません。美術館ではまだアジア美術展をやっていますか？</span>
+          </span>
+          <span class="duration">5.8s</span>
+        </button>
+        
+        <button class="sentence-row dialogue" data-start="258.792" data-end="262.153" aria-label="音声を再生: Today’s the last day of the exhibition, actually.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">Today’s the last day of the exhibition, actually.</span>
+            <span class="japanese">実は、今日がその展示の最終日です。</span>
+          </span>
+          <span class="duration">3.4s</span>
+        </button>
+        
+        <button class="sentence-row dialogue" data-start="262.686" data-end="268.034" aria-label="音声を再生: Great. I thought I’d missed it. Could I have two tickets?">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">Great. I thought I’d missed it. Could I have two tickets?</span>
+            <span class="japanese">よかった。見逃したと思っていました。チケットを2枚いただけますか？</span>
+          </span>
+          <span class="duration">5.3s</span>
+        </button>
+        
+        <button class="sentence-row choice" data-start="269.156" data-end="273.007" aria-label="音声を再生: 1  Sure. That will be $10.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">1  Sure. That will be $10.</span>
+            <span class="japanese">はい。10ドルです。</span>
+          </span>
+          <span class="duration">3.9s</span>
+        </button>
+        
+        <button class="sentence-row choice" data-start="274.125" data-end="278.836" aria-label="音声を再生: 2  I’m sorry, there is no exhibition this week.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">2  I’m sorry, there is no exhibition this week.</span>
+            <span class="japanese">申し訳ありませんが、今週は展示はありません。</span>
+          </span>
+          <span class="duration">4.7s</span>
+        </button>
+        
+        <button class="sentence-row choice" data-start="279.961" data-end="284.313" aria-label="音声を再生: 3  Well, Asian art is quite popular.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">3  Well, Asian art is quite popular.</span>
+            <span class="japanese">そうですね、アジア美術はかなり人気があります。</span>
+          </span>
+          <span class="duration">4.4s</span>
+        </button>
+        
+        <div class="vocab-box"><span class="vocab-title">語句</span><span class="vocab-chip"><b>exhibition</b> ＝ 展示、展覧会</span><span class="vocab-chip"><b>quite</b> ＝ かなり、けっこう</span></div>
+      </section>
+    
+      <section class="question-card">
+        <div class="question-head">
+          <h2>No. 5</h2>
+          <button class="play-question" data-q="5" data-start="296.729" data-end="319.184">▶ No.5 を通して聞く</button>
+        </div>
+        
+        <button class="sentence-row dialogue" data-start="296.729" data-end="298.281" aria-label="音声を再生: What are you eating, Jill?">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">What are you eating, Jill?</span>
+            <span class="japanese">ジル、何を食べているの？</span>
+          </span>
+          <span class="duration">1.6s</span>
+        </button>
+        
+        <button class="sentence-row dialogue" data-start="298.823" data-end="303.929" aria-label="音声を再生: This is called larb. It’s a kind of salad from Southeast Asia.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">This is called larb. It’s a kind of salad from Southeast Asia.</span>
+            <span class="japanese">これはラープっていうの。東南アジアのサラダの一種よ。</span>
+          </span>
+          <span class="duration">5.1s</span>
+        </button>
+        
+        <button class="sentence-row dialogue" data-start="304.594" data-end="307.746" aria-label="音声を再生: Oh, really? What does it taste like?">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">Oh, really? What does it taste like?</span>
+            <span class="japanese">へえ、そうなの？ どんな味がするの？</span>
+          </span>
+          <span class="duration">3.2s</span>
+        </button>
+        
+        <button class="sentence-row choice" data-start="308.896" data-end="311.364" aria-label="音声を再生: 1  There’s none left.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">1  There’s none left.</span>
+            <span class="japanese">もう残っていないよ。</span>
+          </span>
+          <span class="duration">2.5s</span>
+        </button>
+        
+        <button class="sentence-row choice" data-start="312.487" data-end="315.256" aria-label="音声を再生: 2  It’s hot and spicy.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">2  It’s hot and spicy.</span>
+            <span class="japanese">辛くてスパイシーだよ。</span>
+          </span>
+          <span class="duration">2.8s</span>
+        </button>
+        
+        <button class="sentence-row choice" data-start="316.407" data-end="319.184" aria-label="音声を再生: 3  I like Asian food.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">3  I like Asian food.</span>
+            <span class="japanese">アジア料理が好きだよ。</span>
+          </span>
+          <span class="duration">2.8s</span>
+        </button>
+        
+        
+      </section>
+    
+      <section class="question-card">
+        <div class="question-head">
+          <h2>No. 6</h2>
+          <button class="play-question" data-q="6" data-start="331.549" data-end="355.979">▶ No.6 を通して聞く</button>
+        </div>
+        
+        <button class="sentence-row dialogue" data-start="331.549" data-end="336.529" aria-label="音声を再生: I can’t wait for the concert to start. This is my favorite band.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">I can’t wait for the concert to start. This is my favorite band.</span>
+            <span class="japanese">コンサートが始まるのが待ちきれない。これ、私の大好きなバンドなんだ。</span>
+          </span>
+          <span class="duration">5.0s</span>
+        </button>
+        
+        <button class="sentence-row dialogue" data-start="337.000" data-end="340.125" aria-label="音声を再生: I’m glad that we bought the tickets in advance.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">I’m glad that we bought the tickets in advance.</span>
+            <span class="japanese">前もってチケットを買っておいてよかったね。</span>
+          </span>
+          <span class="duration">3.1s</span>
+        </button>
+        
+        <button class="sentence-row dialogue" data-start="340.621" data-end="344.418" aria-label="音声を再生: I know. Several of my friends couldn’t get a ticket.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">I know. Several of my friends couldn’t get a ticket.</span>
+            <span class="japanese">ほんと。友達の何人かはチケットを取れなかったんだ。</span>
+          </span>
+          <span class="duration">3.8s</span>
+        </button>
+        
+        <button class="sentence-row choice" data-start="345.548" data-end="348.387" aria-label="音声を再生: 1  I feel bad for them.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">1  I feel bad for them.</span>
+            <span class="japanese">それはかわいそうだね。</span>
+          </span>
+          <span class="duration">2.8s</span>
+        </button>
+        
+        <button class="sentence-row choice" data-start="349.510" data-end="352.214" aria-label="音声を再生: 2  I should buy a ticket.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">2  I should buy a ticket.</span>
+            <span class="japanese">私はチケットを買うべきだね。</span>
+          </span>
+          <span class="duration">2.7s</span>
+        </button>
+        
+        <button class="sentence-row choice" data-start="353.356" data-end="355.979" aria-label="音声を再生: 3  They’re in the band.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">3  They’re in the band.</span>
+            <span class="japanese">彼らはそのバンドのメンバーだよ。</span>
+          </span>
+          <span class="duration">2.6s</span>
+        </button>
+        
+        <div class="vocab-box"><span class="vocab-title">語句</span><span class="vocab-chip"><b>in advance</b> ＝ 前もって、あらかじめ</span></div>
+      </section>
+    
+      <section class="question-card">
+        <div class="question-head">
+          <h2>No. 7</h2>
+          <button class="play-question" data-q="7" data-start="368.434" data-end="400.925">▶ No.7 を通して聞く</button>
+        </div>
+        
+        <button class="sentence-row dialogue" data-start="368.434" data-end="369.506" aria-label="音声を再生: City Library, Emily speaking.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">City Library, Emily speaking.</span>
+            <span class="japanese">市立図書館、エミリーでございます。</span>
+          </span>
+          <span class="duration">1.1s</span>
+        </button>
+        
+        <button class="sentence-row dialogue" data-start="370.894" data-end="380.305" aria-label="音声を再生: Hi, I have a book to return by tomorrow, but I can’t get there before closing time.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">Hi, I have a book to return by tomorrow, but I can’t get there before closing time.</span>
+            <span class="japanese">こんにちは。明日までに返さないといけない本があるのですが、閉館時間までにそちらへ行けません。</span>
+          </span>
+          <span class="duration">9.4s</span>
+        </button>
+        
+        <button class="sentence-row dialogue" data-start="380.786" data-end="388.801" aria-label="音声を再生: In that case, you can drop it in the return box at the entrance.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">In that case, you can drop it in the return box at the entrance.</span>
+            <span class="japanese">それでしたら、入口の返却ボックスに入れていただけます。</span>
+          </span>
+          <span class="duration">8.0s</span>
+        </button>
+        
+        <button class="sentence-row choice" data-start="389.915" data-end="392.471" aria-label="音声を再生: 1  I will be back soon.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">1  I will be back soon.</span>
+            <span class="japanese">すぐ戻ります。</span>
+          </span>
+          <span class="duration">2.6s</span>
+        </button>
+        
+        <button class="sentence-row choice" data-start="393.606" data-end="396.725" aria-label="音声を再生: 2  Great. I can do that.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">2  Great. I can do that.</span>
+            <span class="japanese">よかった。それならできます。</span>
+          </span>
+          <span class="duration">3.1s</span>
+        </button>
+        
+        <button class="sentence-row choice" data-start="397.839" data-end="400.925" aria-label="音声を再生: 3  Close the front door, please.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">3  Close the front door, please.</span>
+            <span class="japanese">玄関のドアを閉めてください。</span>
+          </span>
+          <span class="duration">3.1s</span>
+        </button>
+        
+        
+      </section>
+    
+      <section class="question-card">
+        <div class="question-head">
+          <h2>No. 8</h2>
+          <button class="play-question" data-q="8" data-start="413.151" data-end="439.332">▶ No.8 を通して聞く</button>
+        </div>
+        
+        <button class="sentence-row dialogue" data-start="413.151" data-end="419.007" aria-label="音声を再生: Hi, I would like to have an egg sandwich and one hot coffee to go.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">Hi, I would like to have an egg sandwich and one hot coffee to go.</span>
+            <span class="japanese">こんにちは。卵サンドとホットコーヒーを1つ、持ち帰りでお願いします。</span>
+          </span>
+          <span class="duration">5.9s</span>
+        </button>
+        
+        <button class="sentence-row dialogue" data-start="419.428" data-end="423.010" aria-label="音声を再生: Sure. It will take about five minutes to make.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">Sure. It will take about five minutes to make.</span>
+            <span class="japanese">かしこまりました。作るのに5分ほどかかります。</span>
+          </span>
+          <span class="duration">3.6s</span>
+        </button>
+        
+        <button class="sentence-row dialogue" data-start="423.402" data-end="426.328" aria-label="音声を再生: No problem. Should I pay first?">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">No problem. Should I pay first?</span>
+            <span class="japanese">大丈夫です。先に支払ったほうがいいですか？</span>
+          </span>
+          <span class="duration">2.9s</span>
+        </button>
+        
+        <button class="sentence-row choice" data-start="427.444" data-end="430.569" aria-label="音声を再生: 1  Yes, over here, please.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">1  Yes, over here, please.</span>
+            <span class="japanese">はい、こちらでお願いします。</span>
+          </span>
+          <span class="duration">3.1s</span>
+        </button>
+        
+        <button class="sentence-row choice" data-start="431.686" data-end="434.820" aria-label="音声を再生: 2  No, you can have it here.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">2  No, you can have it here.</span>
+            <span class="japanese">いいえ、ここで召し上がれます。</span>
+          </span>
+          <span class="duration">3.1s</span>
+        </button>
+        
+        <button class="sentence-row choice" data-start="435.983" data-end="439.332" aria-label="音声を再生: 3  Yes, she’ll meet you first.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">3  Yes, she’ll meet you first.</span>
+            <span class="japanese">はい、彼女が先にあなたに会います。</span>
+          </span>
+          <span class="duration">3.3s</span>
+        </button>
+        
+        <div class="vocab-box"><span class="vocab-title">語句</span><span class="vocab-chip"><b>to go</b> ＝ 持ち帰りで</span></div>
+      </section>
+    
+      <section class="question-card">
+        <div class="question-head">
+          <h2>No. 9</h2>
+          <button class="play-question" data-q="9" data-start="451.635" data-end="482.440">▶ No.9 を通して聞く</button>
+        </div>
+        
+        <button class="sentence-row dialogue" data-start="451.635" data-end="456.702" aria-label="音声を再生: Jimmy, the seawater looks beautiful here. Do you want to swim?">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">Jimmy, the seawater looks beautiful here. Do you want to swim?</span>
+            <span class="japanese">ジミー、ここの海の水はきれいね。泳ぎたい？</span>
+          </span>
+          <span class="duration">5.1s</span>
+        </button>
+        
+        <button class="sentence-row dialogue" data-start="457.235" data-end="463.525" aria-label="音声を再生: Yes! Since you brought me to the beach, I want to go in the ocean, Mom.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">Yes! Since you brought me to the beach, I want to go in the ocean, Mom.</span>
+            <span class="japanese">うん！ せっかく海に連れてきてくれたんだから、海に入りたいよ、お母さん。</span>
+          </span>
+          <span class="duration">6.3s</span>
+        </button>
+        
+        <button class="sentence-row dialogue" data-start="463.939" data-end="467.414" aria-label="音声を再生: OK. It’s a perfect day for swimming today.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">OK. It’s a perfect day for swimming today.</span>
+            <span class="japanese">わかった。今日は泳ぐのに最高の日ね。</span>
+          </span>
+          <span class="duration">3.5s</span>
+        </button>
+        
+        <button class="sentence-row choice" data-start="468.536" data-end="472.565" aria-label="音声を再生: 1  Sure. I’ll clean up the beach.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">1  Sure. I’ll clean up the beach.</span>
+            <span class="japanese">もちろん。海岸を掃除するよ。</span>
+          </span>
+          <span class="duration">4.0s</span>
+        </button>
+        
+        <button class="sentence-row choice" data-start="473.679" data-end="477.211" aria-label="音声を再生: 2  It was very hot in the river.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">2  It was very hot in the river.</span>
+            <span class="japanese">川の中はとても暑かった。</span>
+          </span>
+          <span class="duration">3.5s</span>
+        </button>
+        
+        <button class="sentence-row choice" data-start="478.385" data-end="482.440" aria-label="音声を再生: 3  Let’s go in and enjoy ourselves.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">3  Let’s go in and enjoy ourselves.</span>
+            <span class="japanese">海に入って楽しもう。</span>
+          </span>
+          <span class="duration">4.1s</span>
+        </button>
+        
+        
+      </section>
+    
+      <section class="question-card">
+        <div class="question-head">
+          <h2>No. 10</h2>
+          <button class="play-question" data-q="10" data-start="494.710" data-end="522.176">▶ No.10 を通して聞く</button>
+        </div>
+        
+        <button class="sentence-row dialogue" data-start="494.710" data-end="499.223" aria-label="音声を再生: It’s comfortable in this restaurant. I’m glad that we came here.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">It’s comfortable in this restaurant. I’m glad that we came here.</span>
+            <span class="japanese">このレストラン、居心地がいいね。ここに来てよかった。</span>
+          </span>
+          <span class="duration">4.5s</span>
+        </button>
+        
+        <button class="sentence-row dialogue" data-start="499.754" data-end="505.798" aria-label="音声を再生: Me, too. I read in the magazine that good food was served here, too.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">Me, too. I read in the magazine that good food was served here, too.</span>
+            <span class="japanese">私も。雑誌で、ここはおいしい料理を出すって読んだよ。</span>
+          </span>
+          <span class="duration">6.0s</span>
+        </button>
+        
+        <button class="sentence-row dialogue" data-start="506.253" data-end="508.056" aria-label="音声を再生: I wonder what I should order.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">I wonder what I should order.</span>
+            <span class="japanese">何を注文しようかな。</span>
+          </span>
+          <span class="duration">1.8s</span>
+        </button>
+        
+        <button class="sentence-row choice" data-start="509.228" data-end="513.064" aria-label="音声を再生: 1  The waiter left the bill on the table.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">1  The waiter left the bill on the table.</span>
+            <span class="japanese">ウェイターがテーブルに伝票を置いていったよ。</span>
+          </span>
+          <span class="duration">3.8s</span>
+        </button>
+        
+        <button class="sentence-row choice" data-start="514.182" data-end="518.005" aria-label="音声を再生: 2  Let’s ask for the chef’s recommendation.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">2  Let’s ask for the chef’s recommendation.</span>
+            <span class="japanese">シェフのおすすめを聞いてみよう。</span>
+          </span>
+          <span class="duration">3.8s</span>
+        </button>
+        
+        <button class="sentence-row choice" data-start="519.141" data-end="522.176" aria-label="音声を再生: 3  Thank you for helping me out.">
+          <span class="play-icon">▶</span>
+          <span class="sentence-text">
+            <span class="english">3  Thank you for helping me out.</span>
+            <span class="japanese">手伝ってくれてありがとう。</span>
+          </span>
+          <span class="duration">3.0s</span>
+        </button>
+        
+        
+      </section>
+    
+
+    <section class="footer-action">
+      <p><b>仕上げ：</b>ここまで練習したら、文字を見ずに上から通してシャドーイング。</p>
+      <button id="enterShadow" class="primary">🎧 本番シャドーイングへ</button>
+    </section>
+  </main>
+</div>
+
+<section id="shadowMode" aria-hidden="true">
+  <div class="shadow-inner">
+    <div class="shadow-badge">英検準2級 · Part 1 · No.1–10</div>
+    <h1 class="shadow-title">本番シャドーイング</h1>
+    <p class="shadow-note">スクリプトは表示されません。聞こえた英語を、そのまま少し遅れて追いかけてください。</p>
+
+    <div id="shadowNo" class="big-no">No. 1</div>
+
+    <div class="shadow-controls">
+      <button id="shadowStart" class="dark-btn dark-primary">▶ 最初から開始</button>
+      <button id="shadowPause" class="dark-btn">⏸ 一時停止</button>
+      <button id="shadowBack5" class="dark-btn">↶ 5秒戻る</button>
+      <button id="exitShadow" class="dark-btn">練習画面へ戻る</button>
+    </div>
+
+    <div class="progress-wrap"><div id="progressBar"></div></div>
+    <div id="timeText">0:00 / 6:18</div>
+
+    <div class="no-script">
+      SCRIPT HIDDEN<br>
+      ここでは英文・和訳ともに表示しません。
+    </div>
+  </div>
+</section>
+
+<div id="nowPlaying" class="now-playing">再生中</div>
+
+<audio id="audio" preload="auto" src="pre2_2025_2_part1.mp3"></audio>
+
+<script>
+(() => {
+  const audio = document.getElementById('audio');
+  const cardsWrap = document.getElementById('cardsWrap');
+  const toggleJa = document.getElementById('toggleJa');
+  const toggleEn = document.getElementById('toggleEn');
+  const speed = document.getElementById('speed');
+  const repeatCount = document.getElementById('repeatCount');
+  const nowPlaying = document.getElementById('nowPlaying');
+
+  let stopAt = null;
+  let activeButton = null;
+  let repetitionsLeft = 0;
+  let clipStart = 0;
+  let clipEnd = 0;
+  let clipLabel = '';
+  let shadowing = false;
+
+  const SHADOW_START = 143.903;
+  const SHADOW_END = 522.176;
+  const QUESTION_RANGES = [{"no": 1, "start": 146.087, "end": 173.149}, {"no": 2, "start": 185.46, "end": 204.799}, {"no": 3, "start": 217.116, "end": 240.248}, {"no": 4, "start": 252.613, "end": 284.313}, {"no": 5, "start": 296.729, "end": 319.184}, {"no": 6, "start": 331.549, "end": 355.979}, {"no": 7, "start": 368.434, "end": 400.925}, {"no": 8, "start": 413.151, "end": 439.332}, {"no": 9, "start": 451.635, "end": 482.44}, {"no": 10, "start": 494.71, "end": 522.176}];
+
+  function clearActive() {
+    if (activeButton) activeButton.classList.remove('playing');
+    activeButton = null;
+  }
+
+  function formatTime(sec) {
+    sec = Math.max(0, Math.floor(sec));
+    const m = Math.floor(sec / 60);
+    const s = sec % 60;
+    return `${m}:${String(s).padStart(2,'0')}`;
+  }
+
+  function playClip(start, end, label, btn=null) {
+    shadowing = false;
+    clearActive();
+    activeButton = btn;
+    if (activeButton) activeButton.classList.add('playing');
+    clipStart = Math.max(0, start - 0.04);
+    clipEnd = end + 0.10;
+    stopAt = clipEnd;
+    repetitionsLeft = Math.max(1, parseInt(repeatCount.value || '1', 10));
+    clipLabel = label || '再生中';
+    nowPlaying.textContent = '▶ ' + clipLabel;
+    nowPlaying.classList.add('show');
+    audio.playbackRate = parseFloat(speed.value || '1');
+    audio.currentTime = clipStart;
+    audio.play();
+  }
+
+  function restartClipIfNeeded() {
+    repetitionsLeft -= 1;
+    if (repetitionsLeft > 0) {
+      setTimeout(() => {
+        audio.currentTime = clipStart;
+        audio.play();
+      }, 220);
+    } else {
+      audio.pause();
+      stopAt = null;
+      clearActive();
+      nowPlaying.classList.remove('show');
+    }
+  }
+
+  document.querySelectorAll('.sentence-row').forEach(btn => {
+    btn.addEventListener('click', () => {
+      playClip(
+        parseFloat(btn.dataset.start),
+        parseFloat(btn.dataset.end),
+        btn.querySelector('.english').textContent.trim(),
+        btn
+      );
+    });
+  });
+
+  document.querySelectorAll('.play-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      playClip(
+        parseFloat(btn.dataset.start),
+        parseFloat(btn.dataset.end),
+        `No.${btn.dataset.q} を通して再生`,
+        btn
+      );
+    });
+  });
+
+  toggleJa.addEventListener('click', () => {
+    cardsWrap.classList.toggle('hide-ja');
+    toggleJa.textContent = cardsWrap.classList.contains('hide-ja') ? '和訳を表示' : '和訳を隠す';
+  });
+
+  toggleEn.addEventListener('click', () => {
+    cardsWrap.classList.toggle('hide-en');
+    toggleEn.textContent = cardsWrap.classList.contains('hide-en') ? '英語を表示' : '英語を隠す';
+  });
+
+  speed.addEventListener('change', () => {
+    audio.playbackRate = parseFloat(speed.value || '1');
+  });
+
+  const practiceMode = document.getElementById('practiceMode');
+  const shadowMode = document.getElementById('shadowMode');
+  const enterShadow = document.getElementById('enterShadow');
+  const exitShadow = document.getElementById('exitShadow');
+  const shadowStart = document.getElementById('shadowStart');
+  const shadowPause = document.getElementById('shadowPause');
+  const shadowBack5 = document.getElementById('shadowBack5');
+  const shadowNo = document.getElementById('shadowNo');
+  const progressBar = document.getElementById('progressBar');
+  const timeText = document.getElementById('timeText');
+
+  function enterShadowMode() {
+    audio.pause();
+    clearActive();
+    stopAt = null;
+    nowPlaying.classList.remove('show');
+    practiceMode.style.display = 'none';
+    shadowMode.classList.add('active');
+    shadowMode.setAttribute('aria-hidden', 'false');
+    document.body.style.background = '#111827';
+    window.scrollTo(0,0);
+  }
+
+  function exitShadowMode() {
+    audio.pause();
+    shadowing = false;
+    stopAt = null;
+    shadowMode.classList.remove('active');
+    shadowMode.setAttribute('aria-hidden', 'true');
+    practiceMode.style.display = '';
+    document.body.style.background = '';
+    window.scrollTo(0,0);
+  }
+
+  function beginShadowing() {
+    shadowing = true;
+    stopAt = SHADOW_END;
+    audio.playbackRate = 1.0;
+    audio.currentTime = SHADOW_START;
+    audio.play();
+  }
+
+  enterShadow.addEventListener('click', enterShadowMode);
+  exitShadow.addEventListener('click', exitShadowMode);
+  shadowStart.addEventListener('click', beginShadowing);
+  shadowPause.addEventListener('click', () => {
+    if (audio.paused) audio.play();
+    else audio.pause();
+  });
+  shadowBack5.addEventListener('click', () => {
+    audio.currentTime = Math.max(SHADOW_START, audio.currentTime - 5);
+    if (audio.paused) audio.play();
+  });
+
+  audio.addEventListener('timeupdate', () => {
+    if (stopAt !== null && audio.currentTime >= stopAt) {
+      if (shadowing) {
+        audio.pause();
+        shadowing = false;
+        stopAt = null;
+        progressBar.style.width = '100%';
+        shadowNo.textContent = 'FINISH';
+      } else {
+        restartClipIfNeeded();
+      }
+    }
+
+    if (shadowMode.classList.contains('active')) {
+      const current = Math.min(Math.max(audio.currentTime, SHADOW_START), SHADOW_END);
+      const ratio = (current - SHADOW_START) / (SHADOW_END - SHADOW_START);
+      progressBar.style.width = `${Math.max(0, Math.min(100, ratio * 100))}%`;
+      timeText.textContent = `${formatTime(current - SHADOW_START)} / ${formatTime(SHADOW_END - SHADOW_START)}`;
+
+      let qNo = 1;
+      for (const q of QUESTION_RANGES) {
+        if (audio.currentTime >= q.start) qNo = q.no;
+      }
+      shadowNo.textContent = `No. ${qNo}`;
+    }
+  });
+
+  audio.addEventListener('ended', () => {
+    stopAt = null;
+    shadowing = false;
+    clearActive();
+    nowPlaying.classList.remove('show');
+  });
+})();
+</script>
+</body>
+</html>

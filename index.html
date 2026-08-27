@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>英検リスニング シャドーイング練習</title>
+<style>
+  :root{
+    --bg:#f6f7fb;
+    --card:#ffffff;
+    --text:#1f2937;
+    --muted:#6b7280;
+    --line:#e5e7eb;
+    --accent:#3157d5;
+    --accent-hover:#2546b8;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+  }
+  .wrap{
+    max-width:900px;
+    margin:0 auto;
+    padding:42px 18px 72px;
+  }
+  header{
+    margin-bottom:30px;
+  }
+  h1{
+    margin:0 0 10px;
+    font-size:clamp(1.7rem,4vw,2.5rem);
+  }
+  .sub{
+    margin:0;
+    color:var(--muted);
+    line-height:1.75;
+  }
+  .section-title{
+    margin:34px 0 14px;
+    font-size:1.25rem;
+  }
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:14px;
+  }
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:20px;
+    box-shadow:0 8px 24px rgba(31,41,55,.06);
+  }
+  .tag{
+    display:inline-block;
+    margin-bottom:12px;
+    padding:5px 10px;
+    border-radius:999px;
+    background:#eef2ff;
+    color:var(--accent);
+    font-size:.8rem;
+    font-weight:800;
+  }
+  .card h2{
+    margin:0 0 8px;
+    font-size:1.08rem;
+    line-height:1.5;
+  }
+  .card p{
+    margin:0 0 16px;
+    color:var(--muted);
+    font-size:.92rem;
+    line-height:1.65;
+  }
+  .btn{
+    display:block;
+    width:100%;
+    padding:13px 14px;
+    border-radius:12px;
+    text-align:center;
+    text-decoration:none;
+    background:var(--accent);
+    color:white;
+    font-weight:800;
+    transition:.15s;
+  }
+  .btn:hover{
+    background:var(--accent-hover);
+    transform:translateY(-1px);
+  }
+  .coming{
+    margin-top:15px;
+    color:var(--muted);
+    font-size:.9rem;
+  }
+  footer{
+    margin-top:44px;
+    text-align:center;
+    color:var(--muted);
+    font-size:.82rem;
+  }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header>
+    <h1>英検リスニング シャドーイング練習</h1>
+    <p class="sub">
+      センテンスごとに音声を確認し、最後はスクリプトを見ずに通してシャドーイングする練習ページです。<br>
+      教材は毎週少しずつ追加していきます。
+    </p>
+  </header>
+
+  <h2 class="section-title">英検準2級</h2>
+
+  <div class="grid">
+    <section class="card">
+      <span class="tag">Listening Part 1</span>
+      <h2>英検準２級2025年度 第２回 Part1</h2>
+      <p>1文ずつ音声確認 → 和訳・英文を隠して練習 → 最後にスクリプトなしで通しシャドーイング。</p>
+      <a class="btn" href="pre2_2025_2_part1.html">英検準２級2025年度 第２回 Part1</a>
+    </section>
+  </div>
+
+  <p class="coming">今後、Part2・Part3・別年度の教材をここに追加できます。</p>
+
+  <footer>English Listening Shadowing Practice</footer>
+</main>
+</body>
+</html>
